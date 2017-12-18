@@ -1,0 +1,14 @@
+#!/bin/bash
+. /root/.bash_profile
+VAR=""
+HBM_APP=`ps -aef | grep "SpringAlCRBT-0.0.5.jar"| grep -v grep`
+if [ "$HBM_APP" != "$VAR" ]
+then
+        echo "$HBM_APP"
+        echo Already Running.........
+else
+cd  /home/crbt/CRBTFlow/binary
+java -Dlog4j.configuration=file:./log4j.properties -jar SpringAlCRBT-0.0.5.jar 1>>logs.txt 2>>logs.txt &
+CPID=`ps -aef | grep "SpringAlCRBT-0.0.5.jar"| grep -v grep`
+echo $CPID
+fi
